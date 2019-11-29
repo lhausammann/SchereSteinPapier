@@ -1,22 +1,24 @@
 <?php declare(strict_types=1);
 
-use App\Game\Player;
-use App\Game\Tool\Paper;
-use App\Game\Tool\Scissor;
-use App\Game\Tool\Stone;
+use Game\Player;
+use Game\Tool\Paper;
+use Game\Tool\Scissor;
+use Game\Tool\Stone;
 
 use PHPUnit\Framework\TestCase;
 
 
 class RulesetTest extends TestCase
 {
-    public function testPlayerChooses() {
+    public function testPlayerChooses()
+    {
         $a = new Player("A");
         $tool = $a->choose();
         $this->assertTrue(Player::isAllowedTool($tool));
     }
 
-    public function testPlayerName() {
+    public function testPlayerName()
+    {
         $player = new Player("robot");
         $this->assertEquals('robot', $player);
     }
@@ -31,22 +33,24 @@ class RulesetTest extends TestCase
         $this->assertEquals('Paper', $paper->getName());
     }
 
-
-    public function testStoneHitsScissor() {
+    public function testStoneHitsScissor()
+    {
         $scissor = new Scissor();
         $stone = new Stone();
         $this->assertTrue($stone->wins($scissor), 'stone must win against scissor');
         $this->assertTrue($scissor->looses($stone), 'scissor must loose against stone');
     }
 
-    public function testScissorHitsPaper() {
+    public function testScissorHitsPaper()
+    {
         $scissor = new Scissor();
         $paper = new Paper();
         $this->assertTrue($scissor->wins($paper), 'scissor must win against paper');
         $this->assertTrue($paper->looses($scissor), 'paper must loose against scissor');
     }
 
-    public function testPaperHitsStone() {
+    public function testPaperHitsStone()
+    {
         $paper = new Paper();
         $stone = new Stone();
         $this->assertTrue($paper->wins($stone), 'paper must win against stone');

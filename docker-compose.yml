@@ -8,7 +8,7 @@ services:
       #- ./:/app # nocopy is important
       - ./:/app
       # uncomment this if you want to use xdebug
-      - ./docker/config/meteoapi-app/php.ini:/opt/docker/etc/php/php.ini
+      #- ./docker/config/meteoapi-app/php.ini:/opt/docker/etc/php/php.ini
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
       - WEB_DOCUMENT_INDEX=index.php

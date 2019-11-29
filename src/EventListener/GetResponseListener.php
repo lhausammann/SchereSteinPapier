@@ -2,8 +2,9 @@
 
 namespace App\EventListener;
 
-use App\Game\Game;
-use App\Game\Tool\AbstractTool;
+use Game\ConsolePlayer;
+use Game\Game;
+use Game\Player;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -12,10 +13,10 @@ class GetResponseListener
 {
     public function __invoke(RequestEvent $e) : void
     {
-        $game = new Game(); // could be we start some session etc, so call it every time.
         if ($choice = $e->getRequest()->query->get('choice', '')) {
+            $game = new Game(new ConsolePlayer('You', $choice), new Player('Robo')); // could be we start some session etc, so call it every time.
 
-            $info = $game->play($choice);
+            $info = $game->play();
 
             $html = '<html><h1>'.$info->getMessage().'</h1>'.$this->createSelect().'</html>';
         } else {

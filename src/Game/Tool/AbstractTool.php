@@ -1,5 +1,5 @@
 <?php
-namespace App\Game\Tool;
+namespace Game\Tool;
 
 abstract class AbstractTool
 {
@@ -36,11 +36,11 @@ abstract class AbstractTool
 
     abstract protected function evaluate(AbstractTool $tool) : int;
 
-    abstract protected function evaluateScissor(AbstractTool $tool) : int;
+    abstract protected function evaluateScissor() : int;
 
-    abstract protected function evaluateStone(AbstractTool $tool) : int;
+    abstract protected function evaluateStone() : int;
 
-    abstract protected function evaluatePaper(AbstractTool $tool) : int;
+    abstract protected function evaluatePaper() : int;
 
 
 }

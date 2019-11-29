@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\Game\Tool;
+namespace Game\Tool;
 
 
 class Paper extends AbstractTool
@@ -8,20 +8,20 @@ class Paper extends AbstractTool
 
     public function evaluate(AbstractTool $tool): int
     {
-        return $tool->evaluatePaper($this); // inverse relation(!)
+        return $tool->evaluatePaper(); // inverse relation(!)
     }
 
-    protected function evaluateScissor(AbstractTool $tool) : int
+    protected function evaluateScissor() : int
     {
         return self::LOSS;
     }
 
-    protected function evaluateStone(AbstractTool $tool) : int
+    protected function evaluateStone() : int
     {
         return self::WIN;
     }
 
-    protected function evaluatePaper(AbstractTool $tool) : int
+    protected function evaluatePaper() : int
     {
         return self::DEUCE;
     }

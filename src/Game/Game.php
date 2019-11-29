@@ -1,44 +1,48 @@
 <?php declare(strict_types = 1);
 
-namespace App\Game;
+namespace Game;
 
-use App\Game\Tool\AbstractTool;
-use App\Game\Tool\Scissor;
-use App\Game\Tool\Stone;
-use App\Game\Tool\Paper;
+use Game\Tool\AbstractTool;
+use Game\Tool\Scissor;
+use Game\Tool\Stone;
+use Game\Tool\Paper;
 
 class Game
 {
     protected static $toolMap = [];
-    protected $userName = '';
+    protected $player1;
+    protected $player2;
 
-    public function __construct($userName = 'Human')
+    public function __construct(Player $player1, Player $player2)
     {
         self::$toolMap = ['scissor' => new Scissor(), 'stone' => new Stone(), 'paper' => new Paper()];
-        $this->userName = $userName;
+        $this->player1 = $player1;
+        $this->player2 = $player2;
     }
 
     public static function getTools() : array {
         return self::$toolMap;
     }
 
-    public function play($chosen)
+    public function play()
     {
-        $tool = self::$toolMap[$chosen] ?? null;
-        if (!$tool) {
-            throw new \Exception('Select either one of paper,scissor,stone. Given: '.$chosen);
+        $tool1 = $this->player1->choose();
+        $tool2 = $this->player2->choose();
+
+        if (!$tool1) {
+            throw new \Exception('Player1: Select either one of paper,scissor,stone. Given: '. $tool1);
         }
-        $robo = new Player('Robot');
-        $roboChoice = $robo->choose();
-        $human = new Player($this->userName);
 
+        if (!$tool2) {
+            throw new \Exception('Player2: Select either one of paper,scissor,stone. Given: '. $tool2);
+        }
 
-        if ($tool->wins($roboChoice)) {
-            return new Info($human, $robo, $tool, $roboChoice, AbstractTool::WIN);
-        } elseif ($tool->looses($roboChoice)) {
-            return new Info($human, $robo, $tool, $roboChoice, AbstractTool::LOSS);
+        if ($tool1->wins($tool2)) {
+            return new Info($this->player1, $this->player2, $tool1, $tool2, AbstractTool::WIN);
+        } elseif ($tool1->looses($tool2)) {
+            return new Info($this->player1, $this->player2, $tool1, $tool2, AbstractTool::LOSS);
         } else {
-            return new Info($human, $robo, $tool, $roboChoice, AbstractTool::DEUCE);
+            return new Info($this->player1, $this->player2, $tool1, $tool2, AbstractTool::DEUCE);
         }
     }
 }

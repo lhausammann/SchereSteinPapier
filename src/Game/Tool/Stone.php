@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace App\Game\Tool;
+namespace Game\Tool;
 
 
 class Stone extends AbstractTool
@@ -11,17 +11,17 @@ class Stone extends AbstractTool
         return $tool->evaluateStone($this);
     }
 
-    protected function evaluateScissor(AbstractTool $tool) : int
+    protected function evaluateScissor() : int
     {
         return self::WIN;
     }
 
-    protected function evaluateStone(AbstractTool $tool) : int
+    protected function evaluateStone() : int
     {
         return self::DEUCE;
     }
 
-    protected function evaluatePaper(AbstractTool $tool) : int
+    protected function evaluatePaper() : int
     {
         return self::LOSS;
     }
