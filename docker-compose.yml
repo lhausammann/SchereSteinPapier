@@ -1,0 +1,37 @@
+version: '3.2'
+services:
+  ssp-app:
+    container_name: ssp-app
+    image: srfonline/role-meteoapi-app:stretch-latest
+    volumes:
+      #- meteoapi-app-sync:/app.old:nocopy
+      #- ./:/app # nocopy is important
+      - ./:/app
+      # uncomment this if you want to use xdebug
+      - ./docker/config/meteoapi-app/php.ini:/opt/docker/etc/php/php.ini
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+      - WEB_DOCUMENT_INDEX=index.php
+      - APP_ENV=dev
+      - APP_DEBUG=true
+    working_dir: /app
+    ports:
+      - "8053:80"
+    expose:
+      - "80"
+    networks:
+      meteo-network:
+
+volumes:
+  meteoapi-db:
+    driver: local
+  meteoapi-app-sync:
+    external: true
+
+networks:
+  meteo-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.32.0.0/24
