@@ -1,5 +1,6 @@
 **Schere, Stein, Papier**
- BusinessLogik
+ BusinessLogik unabhängig von SF
+ Ausspielen auf Console / Web
  
 **Kein Routing**
- EventDispatching als Controller.
+ EventDispatching anstatt Controller.
