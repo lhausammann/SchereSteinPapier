@@ -15,13 +15,13 @@ class Game
 
     public function __construct(Player $player1, Player $player2)
     {
-        self::$toolMap = ['scissor' => new Scissor(), 'stone' => new Stone(), 'paper' => new Paper()];
+        self::$toolMap = self::getTools();
         $this->player1 = $player1;
         $this->player2 = $player2;
     }
 
     public static function getTools() : array {
-        return self::$toolMap;
+        return ['scissor' => new Scissor(), 'stone' => new Stone(), 'paper' => new Paper()];
     }
 
     public function play()
@@ -52,29 +52,33 @@ class Game
  */
 class Info
 {
-    private $human;
-    private $robot;
-    private $humanChoice;
-    private $roboChoice;
-    private $state;
+    public $human;
+    public $robot;
+    public $humanChoice;
+    public $roboChoice;
+    public $state;
 
     private $message;
 
     public function __construct($human, $robot, $humanChoice, $roboChoice, $winnerState)
     {
         $this->state = $winnerState;
-
-        if ($winnerState === AbstractTool::WIN) {
-            $this->message = sprintf('%s wins against %s beating %s with %s', $human, $robot, $roboChoice, $humanChoice);
-        } elseif($winnerState === AbstractTool::LOSS) {
-            $this->message = sprintf('%s looses against %s beaten by %s using %s', $human, $robot, $roboChoice, $humanChoice);
-        } else {
-            $this->message = sprintf("Deuce! Both players used %s and %s.", $humanChoice, $roboChoice);
-        }
+        $this->human = $human;
+        $this->robot = $robot;
+        $this->humanChoice = $humanChoice;
+        $this->roboChoice = $roboChoice;
     }
 
     public function getMessage() : string {
-        return $this->message;
+        if ($this->state === AbstractTool::WIN) {
+            return sprintf('%s wins against %s beating %s with %s', $this->human, $this->robot, $this->roboChoice, $this->humanChoice);
+        } elseif($this->state === AbstractTool::LOSS) {
+            return sprintf('%s looses against %s beaten by %s using %s', $this->human, $this->robot, $this->roboChoice, $this->humanChoice);
+        } else {
+            return sprintf("Deuce! Both players used %s and %s.", $this->humanChoice, $this->roboChoice);
+        }
+
+        throw new \Exception('Invalid ssp state: ' . $this->state);
     }
 
     public function isWin() {
