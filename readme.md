@@ -7,6 +7,7 @@ Demo-Projekt SF 5.0
  EventDispatching anstatt Controller.
  
  **Usage**
+ 
  docker-compose up
  
  docker exec -it ssp-app bash
