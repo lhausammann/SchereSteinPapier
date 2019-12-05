@@ -8,8 +8,11 @@ Demo-Projekt SF 5.0
  
  **Usage**
  docker-compose up
+ 
  docker exec -it ssp-app bash
+ 
  bin/console app:play <tool>
+ 
  e.g. bin/console app:play scissor
  
  
