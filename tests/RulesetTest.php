@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class RulesetTest extends TestCase
 {
-    public function testPlayerChooses()
+    public function testPlayerChoosesAllowedTool()
     {
         $a = new Player("A");
         $tool = $a->choose();

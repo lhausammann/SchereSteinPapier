@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 namespace Game\Tool;
 
 abstract class AbstractTool
@@ -14,6 +14,7 @@ abstract class AbstractTool
 
     public final function play(AbstractTool $against) : int {
         // evaluation returns the double-ddispatched evaluation, which is the enemys score.
+        // return the correct score from players view.
         return $this->evaluate($against) * -1;
     }
 

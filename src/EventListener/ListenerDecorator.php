@@ -12,7 +12,7 @@ class ListenerDecorator
 
     public function __construct(LoggerInterface $logger)
     {
-        $logger->info("Construncting");
+        $logger->info("Construct");
     }
 
     // invoke is a magic method which is tested against and won't be detected using call alone.

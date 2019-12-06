@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-class Kernel extends BaseKernel implements CompilerPassInterface
+class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
@@ -57,7 +57,7 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 
     /**
      * You can modify the container here before it is dumped to PHP code.
-     */
+
     public function process(ContainerBuilder $container)
     {
         // get all event listeners
@@ -82,5 +82,6 @@ class Kernel extends BaseKernel implements CompilerPassInterface
 
             $container->setDefinition($key . microtime(), $decoratedDef);
         }
-    }
+
+    }*/
 }

@@ -7,7 +7,6 @@ use Game\Game;
 use Game\Info;
 use Game\Player;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -18,7 +17,8 @@ class GetResponseListener
 
     private $dispatcher = null;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher) {
+    public function __construct(EventDispatcherInterface $eventDispatcher)
+    {
         $this->dispatcher = $eventDispatcher;
     }
 

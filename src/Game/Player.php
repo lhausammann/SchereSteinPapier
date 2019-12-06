@@ -17,12 +17,12 @@ class Player
         $this->name = $name;
     }
 
-    public static function isAllowedTool(AbstractTool $tool)
+    public static function isAllowedTool(AbstractTool $tool) : bool
     {
         return in_array(get_class($tool), self::$allowedTools);
     }
 
-    public function choose()
+    public function choose() : AbstractTool
     {
         $class =  array_values(self::$allowedTools)[random_int(0,2)];
         return new $class;

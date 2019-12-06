@@ -2,7 +2,7 @@
 
 
 namespace Game;
-
+use Game\Tool\AbstractTool;
 
 class ConsolePlayer extends Player
 {
@@ -12,8 +12,7 @@ class ConsolePlayer extends Player
         $this->toolName = $chosenToolName;
     }
 
-    // $what is the name of the chosen tool
-    public function choose()
+    public function choose() : AbstractTool
     {
         foreach(self::$allowedTools as $key => $tool) {
             if (strtolower($this->toolName) === strtolower($key)) {

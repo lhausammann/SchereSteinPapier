@@ -25,13 +25,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\EventListener\GetResponseListener:
-        tags: [{ name: kernel.event_listener, event: kernel.request, priority: 500 }]
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
-    App\EventListener\GetResponseListener2:
-        tags: [{ name: kernel.event_listener, event: kernel.response, priority: 0 }]
+    App\EventListener\GetResponseListener:
+        tags: [{ name: kernel.event_listener, event: kernel.request, priority: 1000 }]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
